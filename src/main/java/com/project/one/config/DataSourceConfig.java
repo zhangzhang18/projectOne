@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  * @Date: 2019-04-24
  */
 @Configuration
-@PropertySource(value = {"classpath:/src/main/resources-env/jdbc.properties"})
+@PropertySource(value = {"classpath:jdbc.properties"})
 public class DataSourceConfig {
     @Value("${jdbc.driver}")
     private String driver;
