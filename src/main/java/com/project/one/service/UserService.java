@@ -11,4 +11,10 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAllUser();
+
+    User getUserById(Long id);
+
+    User getUserByName(String name);
+
+    Integer insert(User user);
 }

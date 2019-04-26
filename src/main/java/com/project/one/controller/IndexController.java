@@ -10,17 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Description:
  * @Author: zhangchunmeng
- * @Date: 2019-04-24
+ * @Date: 2019-04-26
  */
 @RestController
-public class HelloController {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class IndexController {
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-    @ApiOperation(value = "hello", notes = "")
-    @RequestMapping(value = {"hello"}, method = RequestMethod.GET)
+    @ApiOperation(value = "index", notes = "首页")
+    @RequestMapping(value = {"index"}, method = RequestMethod.GET)
     public String index() {
-        logger.info("go hello");
-        return "Hello World";
+        return "index";
     }
-
 }
