@@ -12,10 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -41,8 +38,8 @@ public class UserController {
         return ResultUtil.getSuccessResult(userService.getAllUser());
     }
 
-    @GetMapping("/register")
-    public ActionResult register(User user, HttpServletResponse httpResponse) {
+    @PostMapping("/register")
+    public ActionResult register(User user) {
         ActionResult result = new ActionResult();
         logger.info("getAllUser start", JSON.toJSONString(user));
         if (user == null) {
@@ -58,9 +55,6 @@ public class UserController {
             if (userService.getUserByName(user.getName()) == null) {
                 if (userService.insert(user) > 0) {
                     result = ResultUtil.getSuccessResult();
-                    Cookie cookie = new Cookie("ticket", String.valueOf(UniqueIdUtil.getUniqueID()));
-                    cookie.setPath("/");
-                    httpResponse.addCookie(cookie);
                 }
             } else {
                 result = ResultUtil.getErrorResult(ResponseCodeEnum.USER_NAME_EXIST);

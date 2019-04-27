@@ -3,7 +3,7 @@ package com.project.one.pojo;
 public class Role {
     private Long id;
 
-    private String ruleName;
+    private String roleName;
 
     private String roleNameZh;
 
@@ -17,12 +17,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getRuleName() {
-        return ruleName;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getRoleNameZh() {

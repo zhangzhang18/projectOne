@@ -6,8 +6,9 @@ public enum ResponseCodeEnum {
     PARAM_ERROR(2, "参数错误", "请检查传入的参数"),
     USER_NAME_NULL(101, "用户名为空", "用户名为空"),
     USER_NAME_EXIST(102, "用户名已存在", "用户名已存在"),
+    USER_NAME_NOT_EXIST(102, "用户名不存在", "用户名不存在"),
     PASSWORD_NULL(103, "密码为空", "密码为空"),
-    PASSWORD_ERROR(104, "密码为空", "密码为空"),
+    PASSWORD_ERROR(104, "密码错误", "密码错误"),
     ;
 
     private int code;

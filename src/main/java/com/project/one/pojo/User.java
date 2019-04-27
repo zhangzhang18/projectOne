@@ -1,6 +1,7 @@
 package com.project.one.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private Long id;
@@ -22,10 +23,12 @@ public class User {
     private String gender;
 
     private String photo;
+    private List<Role> roles;
 
     private Date createTime;
 
     private Date updateTime;
+
 
     public Long getId() {
         return id;
@@ -43,8 +46,13 @@ public class User {
         this.name = name;
     }
 
+
     public String getPassword() {
         return password;
+    }
+
+    public String getUsername() {
+        return null;
     }
 
     public void setPassword(String password) {
@@ -122,4 +130,13 @@ public class User {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
 }

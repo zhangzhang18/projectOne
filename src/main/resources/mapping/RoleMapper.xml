@@ -3,7 +3,7 @@
 <mapper namespace="com.project.one.mapper.RoleMapper" >
   <resultMap id="BaseResultMap" type="com.project.one.pojo.Role" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="rule_name" property="ruleName" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="role_name_zh" property="roleNameZh" jdbcType="VARCHAR" />
     <result column="role_weight" property="roleWeight" jdbcType="INTEGER" />
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, rule_name, role_name_zh, role_weight
+    id, role_name, role_name_zh, role_weight
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.project.one.pojo.RoleExample" >
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.project.one.pojo.Role" >
-    insert into t_role (id, rule_name, role_name_zh, 
+    insert into t_role (id, role_name, role_name_zh, 
       role_weight)
-    values (#{id,jdbcType=BIGINT}, #{ruleName,jdbcType=VARCHAR}, #{roleNameZh,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleNameZh,jdbcType=VARCHAR}, 
       #{roleWeight,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.project.one.pojo.Role" >
@@ -110,8 +110,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="ruleName != null" >
-        rule_name,
+      <if test="roleName != null" >
+        role_name,
       </if>
       <if test="roleNameZh != null" >
         role_name_zh,
@@ -124,8 +124,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="ruleName != null" >
-        #{ruleName,jdbcType=VARCHAR},
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
       </if>
       <if test="roleNameZh != null" >
         #{roleNameZh,jdbcType=VARCHAR},
@@ -147,8 +147,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.ruleName != null" >
-        rule_name = #{record.ruleName,jdbcType=VARCHAR},
+      <if test="record.roleName != null" >
+        role_name = #{record.roleName,jdbcType=VARCHAR},
       </if>
       <if test="record.roleNameZh != null" >
         role_name_zh = #{record.roleNameZh,jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
   <update id="updateByExample" parameterType="map" >
     update t_role
     set id = #{record.id,jdbcType=BIGINT},
-      rule_name = #{record.ruleName,jdbcType=VARCHAR},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
       role_name_zh = #{record.roleNameZh,jdbcType=VARCHAR},
       role_weight = #{record.roleWeight,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -174,8 +174,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.project.one.pojo.Role" >
     update t_role
     <set >
-      <if test="ruleName != null" >
-        rule_name = #{ruleName,jdbcType=VARCHAR},
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
       </if>
       <if test="roleNameZh != null" >
         role_name_zh = #{roleNameZh,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.project.one.pojo.Role" >
     update t_role
-    set rule_name = #{ruleName,jdbcType=VARCHAR},
+    set role_name = #{roleName,jdbcType=VARCHAR},
       role_name_zh = #{roleNameZh,jdbcType=VARCHAR},
       role_weight = #{roleWeight,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

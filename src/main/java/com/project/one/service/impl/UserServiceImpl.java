@@ -4,9 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.project.one.mapper.UserMapper;
 import com.project.one.pojo.User;
 import com.project.one.pojo.UserExample;
+import com.project.one.service.RoleService;
 import com.project.one.service.UserService;
 import com.project.one.utils.UniqueIdUtil;
-import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private RoleService roleService;
 
     @Override
     public List<User> getAllUser() {
@@ -39,6 +42,7 @@ public class UserServiceImpl implements UserService {
         userExample.createCriteria().andIdEqualTo(id);
         List<User> users = userMapper.selectByExample(userExample);
         if (users != null) {
+            users.get(0).setRoles(roleService.getRoleByUid(users.get(0).getId()));
             return users.get(0);
         }
         return null;
@@ -51,6 +55,7 @@ public class UserServiceImpl implements UserService {
         userExample.createCriteria().andNameEqualTo(name);
         List<User> users = userMapper.selectByExample(userExample);
         if (users != null) {
+            users.get(0).setRoles(roleService.getRoleByUid(users.get(0).getId()));
             return users.get(0);
         }
         return null;
@@ -63,7 +68,7 @@ public class UserServiceImpl implements UserService {
         Date now = new Date();
         user.setCreateTime(now);
         user.setUpdateTime(now);
-        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        user.setPassword(new Md5Hash(user.getPassword(), "mameng", 2).toString());
         return userMapper.insertSelective(user);
     }
 
