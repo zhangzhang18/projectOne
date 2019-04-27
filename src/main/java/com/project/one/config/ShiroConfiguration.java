@@ -70,6 +70,9 @@ public class ShiroConfiguration {
         map.put("/logout", "logout");
         map.put("/loginPage", "anon");
         map.put("/login", "anon");
+        map.put("/error", "anon");
+        map.put("/user/**", "roles[administer]");
+
         map.put("/user/register", "anon");
         //对所有用户认证
         map.put("/**", "authc");

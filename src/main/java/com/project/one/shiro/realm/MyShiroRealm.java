@@ -3,11 +3,9 @@ package com.project.one.shiro.realm;
 import com.project.one.pojo.Role;
 import com.project.one.pojo.User;
 import com.project.one.service.UserService;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -40,6 +38,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         for (Role role : user.getRoles()) {
             //添加角色
             simpleAuthorizationInfo.addRole(role.getRoleName());
+            simpleAuthorizationInfo.addStringPermission(role.getRoleName());
         }
         return simpleAuthorizationInfo;
     }
@@ -60,11 +59,10 @@ public class MyShiroRealm extends AuthorizingRealm {
         }
         User user = userService.getUserByName(name);
         if (user == null) {
-            throw new AuthenticationException ("用户名不存在");
+            throw new AuthenticationException("用户名不存在");
         } else {
             SecurityUtils.getSubject().getSession().setAttribute("user", user);
             return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes("mameng"), getName());
-
         }
     }
 }

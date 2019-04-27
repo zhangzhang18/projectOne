@@ -36,17 +36,17 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ActionResult login(String username, String passport, Boolean rememberMe) {
+    public ActionResult login(String username, String passport, Boolean rememberme) {
         if (username == null || passport == null) {
             return ResultUtil.getErrorResult(ResponseCodeEnum.PARAM_ERROR);
         }
         //添加用户认证信息
-        ActionResult result = new ActionResult();
+        ActionResult result;
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, passport, rememberMe);
-        //进行验证，这里可以捕获异常，然后返回对应信息
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, passport, rememberme);
         try {
             subject.login(usernamePasswordToken);
+            result = ResultUtil.getSuccessResult();
         } catch (IncorrectCredentialsException e) {
             result = ResultUtil.getErrorResult(ResponseCodeEnum.PASSWORD_ERROR);
         } catch (AuthenticationException e) {
@@ -59,9 +59,13 @@ public class LoginController {
 
     @RequestMapping(value = "/logOut", method = RequestMethod.POST)
     public ActionResult logOut() {
-        ActionResult result = new ActionResult();
+        ActionResult result;
+        Subject subject = SecurityUtils.getSubject();
         try {
-            SecurityUtils.getSubject().logout();
+            if (subject.isAuthenticated()) {
+                subject.logout();
+            }
+            result = ResultUtil.getSuccessResult();
         } catch (Exception e) {
             result = ResultUtil.getErrorResult(ResponseCodeEnum.ERROR);
             logger.error("logOut err e:{}", e);
