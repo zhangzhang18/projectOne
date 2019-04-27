@@ -37,7 +37,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ActionResult login(String username, String passport, Boolean rememberme) {
-        if (username == null || passport == null) {
+        if (username == null || passport == null||rememberme==null) {
             return ResultUtil.getErrorResult(ResponseCodeEnum.PARAM_ERROR);
         }
         //添加用户认证信息
