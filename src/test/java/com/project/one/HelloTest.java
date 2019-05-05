@@ -1,6 +1,6 @@
 package com.project.one;
 
-import com.project.one.controller.IndexController;
+import com.project.one.web.controller.IndexController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

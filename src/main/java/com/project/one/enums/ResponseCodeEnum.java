@@ -9,6 +9,8 @@ public enum ResponseCodeEnum {
     USER_NAME_NOT_EXIST(102, "用户名不存在", "用户名不存在"),
     PASSWORD_NULL(103, "密码为空", "密码为空"),
     PASSWORD_ERROR(104, "密码错误", "密码错误"),
+    NO_LOGIN(501, "未登录", "未登录"),
+    NO_PERMISSION(502, "权限不足", "权限不足"),
     ;
 
     private int code;

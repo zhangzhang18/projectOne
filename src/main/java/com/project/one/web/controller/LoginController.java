@@ -1,14 +1,10 @@
-package com.project.one.controller;
+package com.project.one.web.controller;
 
 import com.project.one.enums.ResponseCodeEnum;
-import com.project.one.pojo.User;
 import com.project.one.service.UserService;
 import com.project.one.utils.ActionResult;
 import com.project.one.utils.ResultUtil;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -18,10 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * @Description:

@@ -1,12 +1,15 @@
-package com.project.one.controller;
+package com.project.one.web.controller;
 
+import com.project.one.enums.ResponseCodeEnum;
+import com.project.one.utils.ActionResult;
+import com.project.one.utils.ResultUtil;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Description:
@@ -39,5 +42,12 @@ public class IndexController {
     @RequestMapping(value = {"error"}, method = RequestMethod.GET)
     public String error() {
         return "error/404";
+    }
+
+    @ApiOperation(value = "/unauth", notes = "unauth")
+    @RequestMapping(value = {"unauth"}, method = RequestMethod.GET)
+    @ResponseBody
+    public ActionResult unauth() {
+        return ResultUtil.getErrorResult(ResponseCodeEnum.NO_PERMISSION);
     }
 }

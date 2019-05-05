@@ -1,4 +1,4 @@
-package com.project.one.controller;
+package com.project.one.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.project.one.enums.ResponseCodeEnum;
@@ -6,7 +6,6 @@ import com.project.one.pojo.User;
 import com.project.one.service.UserService;
 import com.project.one.utils.ActionResult;
 import com.project.one.utils.ResultUtil;
-import com.project.one.utils.UniqueIdUtil;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,8 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**

@@ -68,7 +68,6 @@ public class ShiroConfiguration {
         Map<String, String> map = new HashMap<String, String>();
         //登出
         map.put("/logout", "logout");
-        map.put("/loginPage", "anon");
         map.put("/login", "anon");
         map.put("/error", "anon");
         map.put("/user/**", "roles[administer]");
@@ -81,7 +80,7 @@ public class ShiroConfiguration {
         //首页
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //错误页面，认证不通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

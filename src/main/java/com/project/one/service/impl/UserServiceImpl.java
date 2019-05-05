@@ -10,6 +10,7 @@ import com.project.one.utils.UniqueIdUtil;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,6 +25,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Value("${md5.salt}")
+    String salt;
     @Resource
     private UserMapper userMapper;
     @Resource
@@ -68,7 +72,7 @@ public class UserServiceImpl implements UserService {
         Date now = new Date();
         user.setCreateTime(now);
         user.setUpdateTime(now);
-        user.setPassword(new Md5Hash(user.getPassword(), "mameng", 2).toString());
+        user.setPassword(new Md5Hash(user.getPassword(), salt, 2).toString());
         return userMapper.insertSelective(user);
     }
 
