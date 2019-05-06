@@ -68,6 +68,7 @@ public class ShiroConfiguration {
         Map<String, String> map = new HashMap<String, String>();
         //登出
         map.put("/logout", "logout");
+        map.put("/kaptcha", "anon");
         map.put("/login", "anon");
         map.put("/error", "anon");
         map.put("/user/**", "roles[administer]");

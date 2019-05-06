@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <script type="text/javascript">
+        function refresh() {
+            document.getElementById('captcha_img').src = "/kaptcha?" + Math.random();
+        }
+    </script>
 </head>
 <body>
 <div align="center">
@@ -10,6 +15,9 @@
         用户名:<input name="username"/><br>
         密码:<input name="passport"><br/>
         <input type="checkbox" name="rememberme" value="false"> 记住我<br/>
+        <img id="captcha_img" alt="点击更换" title="点击更换"
+             onclick="refresh()" src="/kaptcha"/>
+        <input type="text" placeholder="请输入验证码" name="verifyCodeActual">
         <input type="submit" value="登陆">
     </form>
 </div>
